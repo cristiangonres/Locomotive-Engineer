@@ -20,8 +20,7 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
     """
 
     a, b, locomotive, *rest =  each_wagons_id
-    new_list = [locomotive, *missing_wagons, *rest, a, b]
-    return new_list
+    return [locomotive, *missing_wagons, *rest, a, b]
 
 
 def add_missing_stops(route, **kargs):
@@ -32,10 +31,8 @@ def add_missing_stops(route, **kargs):
     :return: dict - updated route dictionary.
     """
 
-    stops = []
-    [stops.append(value) for value in kargs.values()]
-    route["stops"] = stops
-    return route
+    
+    return {**route, "stops": list(kargs.values())}
 
 
 def extend_route_information(route, more_route_information):
